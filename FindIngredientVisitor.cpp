@@ -38,8 +38,9 @@ void FindIngredientVisitor::processRecipe(Recipe& recipe)
 	//                   - appliquer le visiteur sur l'ingrédient
 	for (auto ingredient = recipe.begin(); ingredient != recipe.end(); ++ingredient)
 	{
-		Ingredient* currentIngreptr = new Ingredient(dynamic_cast<Ingredient&>(*ingredient));
-		processIngredient(dynamic_cast<Ingredient&>(*ingredient));
+		m_currentIterator = &ingredient;
+		ingredient->accept(*this);
+		
 	}
 }
 

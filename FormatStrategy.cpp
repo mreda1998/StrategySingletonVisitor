@@ -34,5 +34,5 @@ FormatStrategy::time_decomposition FormatStrategy::decomposeTime(int time) const
 void FormatStrategy::registerFormatStrategy(std::string id, const FormatStrategy* strategy)
 {
 	// À compléter: insérer la stratégie dans le registre des stratégies de la classe TimeFormater
-
+	TimeFormater::getInstance().registerFormatStrategy(id, strategy);
 }

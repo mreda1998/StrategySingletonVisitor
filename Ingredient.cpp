@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "Ingredient.h"
+#include "AbsRecipeVisitor.h"
 
 
 
@@ -30,10 +31,11 @@ const AbsProduct& Ingredient::getProduct() const
 std::ostream& Ingredient::printToStream(std::ostream& o) const 
 {
 	// À compléter pour imprimer sur un stream une catégorie et ses produits
-	o << "\t" << "\t" << m_product.getName() << " " << m_description << "\n";
+	o << "\t" << "\t" << m_product.getName() << " " << m_description;
 	return o;
 }
 
 void Ingredient::accept(class AbsRecipeVisitor& visitor) {
+	visitor.processIngredient(*this);
 
 }

@@ -17,5 +17,6 @@ NumericFormatStrategy::NumericFormatStrategy()
 std::string NumericFormatStrategy::format(int time) const 
 {
 	// À compléter: décomposer la durée et construire une chaine avec en format numérique
-	return std::string();
+	time_decomposition newTime = decomposeTime(time);
+	return(std::to_string(newTime.days) + std::string(":") + std::to_string(newTime.hours) + std::string(":") + std::to_string(newTime.minutes) + std::string(":") + std::to_string(newTime.seconds) );
 }

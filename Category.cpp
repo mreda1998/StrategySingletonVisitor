@@ -105,12 +105,12 @@ const AbsProduct* Category::findProduct(std::string productName) const
 std::ostream & Category::printToStream(std::ostream & o) const
 {
 	// À compléter pour imprimer sur un stream une catégorie et ses produits
-	o << "Category:" << m_name;
+	o << "Category:" << m_name << "\n";
 
 	for (auto itrCompo = cbegin(); itrCompo != cend(); itrCompo++)
 	{
-		this->indent(o);
-		o << *itrCompo << std::endl;
+		o <<'\t'<< *itrCompo << std::endl;
+
 	}
 	return o;
 }

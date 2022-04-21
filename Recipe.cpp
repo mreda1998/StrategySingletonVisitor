@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "Recipe.h"
+#include "AbsRecipeVisitor.h"
 
 Recipe::Recipe(std::string title)
     : AbsIngredient(title,0), m_steps("Steps:")
@@ -109,18 +110,19 @@ void Recipe::deleteRecipeComponent(RecipeComponentIterator_const child)
 {
 	// À compléter pour éliminer de l'ingrédient auquel réfère l'itérateur
 	//m_ingredients.erase(std::remove_if(m_ingredients.begin(), m_ingredients.end(), [&](auto const& element) { return element == child; }), m_ingredients.end());
+	m_ingredients.erase(child);
 }
 
 void Recipe::deleteIngredient(RecipeComponentIterator_const ingredient)
 {
 	// À compléter pour éliminer tous les ingrédients
-	//m_ingredients.clear();
+	m_ingredients.clear();
 }
 
 void Recipe::deleteStep(RecipeComponentIterator_const step)
 {
 	// À compléter pour déléguer aux étapes la tâche d'effacer l'étape à laquelle réfère l'itérateur.
-	//m_steps.deleteRecipeComponent(step);
+	m_steps.deleteRecipeComponent(step);
 
 }
 
@@ -129,20 +131,23 @@ void Recipe::deleteAllComponents()
 	// À compléter pour éliminer tous les ingrédients et déléguer aux étapes
 	// la tâche d'effacer toutes les étapes.
 	//m_steps.deleteAllComponents();
+	m_ingredients.clear();
+	m_steps.deleteAllComponents();
 }
 
 std::ostream& Recipe::printToStream(std::ostream& o) const 
 {
 	// À compléter pour imprimer sur un stream une recette
 	o << "Recipe: " << getDescription() << " \n";
-	o << "\t" << "Ingredient" << "\n";
+	o << "\t" << "Ingredients:" << "\n";
 	for (auto&& itrIngred : m_ingredients)
 	{
 		o << *itrIngred << "\n";
 	}
-	o << "Steps : " << "\n" << m_steps;
+	o <<"\n" << m_steps << "\n";
 	return o;
 }
 
 void Recipe::accept(class AbsRecipeVisitor& visitor) {
+	visitor.processRecipe(*this);
 }		

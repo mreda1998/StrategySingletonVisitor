@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "CompositeStep.h"
+#include "AbsRecipeVisitor.h"
 
 CompositeStep::CompositeStep(std::string title)
 	: AbsStep(title, 0)
@@ -72,12 +73,13 @@ void CompositeStep::deleteRecipeComponent(RecipeComponentIterator_const child)
 {
 	// À compléter pour éliminer des étapes l'élément auquel réfère l'itérateur
 	//m_stepsContainer.erase(std::remove_if(m_stepsContainer.begin(), m_stepsContainer.end(), [&](auto const& element) { return *element == *child; }), m_stepsContainer.end());
+	m_stepsContainer.erase(child);
 }
 
 void CompositeStep::deleteAllComponents(void)
 {
 	// À compléter pour éliminer tous les éléments de l'étape
-	//m_stepsContainer.clear();
+	m_stepsContainer.clear();
 }
 
 int CompositeStep::getDuration() const
@@ -107,5 +109,6 @@ std::ostream& CompositeStep::printToStream(std::ostream& o) const
 }
 
 void CompositeStep::accept(class AbsRecipeVisitor& visitor) {
+	visitor.processCompositeStep(*this);
 	
 }
