@@ -35,6 +35,6 @@ int UnitProduct::getQuantity() const
 std::ostream & UnitProduct::printToStream(std::ostream & o) const
 {
 	// À compléter pour imprimer sur un stream un produit vendu à l'unité
-	o << getName() << "(from " << getOrigin() << ")" << " " << getPrice() << " /pc";
+	o << '\t' << getName() << "(from " << getOrigin() << ")" << " " << getPrice() << " /pc";
 	return o;
 }

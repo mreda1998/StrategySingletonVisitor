@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "SingleStep.h"
+#include "AbsRecipeVisitor.h"
 
 SingleStep::SingleStep(std::string description, int duration)
 	: AbsStep(description, duration)
@@ -29,4 +30,5 @@ std::ostream& SingleStep::printToStream(std::ostream& o) const
 }
 
 void SingleStep::accept(class AbsRecipeVisitor& visitor) {
+	visitor.processSingleStep(*this);
 }

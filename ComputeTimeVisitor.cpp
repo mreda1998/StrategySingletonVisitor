@@ -37,11 +37,11 @@ void ComputeTimeVisitor::processRecipe(Recipe& recipe)
 	//              itérer sur chaque étape et appliquer le visiteur à chaque étape
 	for (auto ingred = recipe.begin(); ingred != recipe.end(); ingred++)
 	{
-		processIngredient(dynamic_cast<Ingredient&>(*ingred));
+		ingred->accept(*this);
 	}
 	for (auto steps = recipe.begin_step(); steps != recipe.end_step(); steps++)
 	{
-		processSingleStep(dynamic_cast<SingleStep&> (*steps));
+		steps->accept(*this);
 	}
 }
 

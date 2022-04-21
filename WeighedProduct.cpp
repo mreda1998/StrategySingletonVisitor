@@ -34,6 +34,6 @@ int WeighedProduct::getQuantity() const
 std::ostream & WeighedProduct::printToStream(std::ostream & o) const
 {
 	// À compléter pour imprimer sur un stream un produit vendu au poids
-	o << getName() << "(from " << getOrigin() << ")" << " " << getPrice() << " " << " (" << getQuantity() << ")";
+	o << '\t' << getName() << "(from " << getOrigin() << ")" << " " << getPrice() << " " << " (" << getQuantity() << ")";
 	return o;
 }
